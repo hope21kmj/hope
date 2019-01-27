@@ -1,0 +1,14 @@
+Building Hopecoin
+
+See doc/readme-qt.rst for instructions on building Hopecoin QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of Hopecoin.
+
+Build qt need to install tripartite libraries 
+1. libpng-1.6.16
+2. qrencode-3.4.4
+3. zxing : https://github.com/ClaireDuSoleil/ZebraCrossing.git 
+
+See doc/build-*.txt for instructions on building hopecoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of Hopecoin.

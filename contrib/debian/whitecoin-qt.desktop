@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Hopecoin
+Comment=Hopecoin P2P Cryptocurrency
+Comment[fr]=Hopecoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Hopecoin, eşten eşe kriptografik sanal para birimi
+Exec=/usr/bin/hopecoin-qt
+Terminal=false
+Type=Application
+Icon=/usr/share/pixmaps/bitcoin80.xpm
+MimeType=x-scheme-handler/hopecoin;
+Categories=Office;

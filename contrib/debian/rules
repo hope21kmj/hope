@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+# -*- mode: makefile; coding: utf-8 -*-
+
+#DEB_MAKE_CHECK_TARGET = test_bitcoin
+#build/bitcoind::
+#	$(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),,src/test_bitcoin)
+
+DEB_INSTALL_EXAMPLES_hopecoind += debian/examples/*
+DEB_INSTALL_MANPAGES_hopecoind += debian/manpages/*
+
+%:
+	dh --with bash-completion $@
+
+override_dh_auto_build:
+	cd src; $(MAKE) -f makefile.unix hopecoind
+	$(MAKE)
+
+override_dh_auto_clean:
+	if [ -f Makefile ]; then $(MAKE) clean; else rm -rf build/; rm -f hopecoin-qt; fi
+	cd src; $(MAKE) -f makefile.unix clean
+
+override_dh_auto_configure:
+	qmake hopecoin-qt.pro USE_QRCODE=1
+
+override_dh_auto_test:
+	cd src; $(MAKE) -f makefile.unix test_hopecoin
+	src/test_hopecoin
+
+# Ensure wrapper is set executable
+binary-post-install/hopecoind:
+	chmod +x $(cdbs_curdestdir)usr/bin/hopecoind
+binary-post-install/hopecoin-qt:
+	chmod +x $(cdbs_curdestdir)usr/bin/hopecoin-qt
