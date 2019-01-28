@@ -40,7 +40,7 @@ map<uint256, CBlockIndex*> mapBlockIndex;
 set<pair<COutPoint, unsigned int> > setStakeSeen;
 
 CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
-CBigNum bnProofOfStakeLimitV2(~uint256(0) >> 48);
+CBigNum bnProofOfStakeLimitV2(~uint256(0) >> 32);
 
 int nStakeMinConfirmations = 20;
 unsigned int nStakeMinAge = 2 * 60 * 60; // 2 hours
@@ -1050,14 +1050,14 @@ static CBigNum GetProofOfStakeLimit(int nHeight)
 // miner's coin base reward
 int64_t GetProofOfWorkReward(int64_t nFees)
 {
-    int64_t PreMine = 313000000 * COIN;
-    if(pindexBest->nHeight == 1){return PreMine;} else {return 1*COIN;}
+    int64_t PreMine = 1000000 * COIN;
+    if(pindexBest->nHeight == 1){return PreMine;} else {return 50000*COIN;}
 }
 
 // miner's coin stake reward
 int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev,  int64_t nFees)
 {
-    int Reward = (pindexPrev->nTime > FORK_TIME) ? 5 : 2;
+    int Reward = (pindexPrev->nTime > FORK_TIME) ? 100 : 50;
     return (Reward * COIN) + nFees;
 }
 
