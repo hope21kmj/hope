@@ -948,13 +948,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Hopecoin-HOC
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Hopecoin-HOC
-    // Mac: ~/Library/Application Support/Hopecoin-HOC
-    // Unix: ~/.hopecoin-xwc
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Hopecoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Hopecoin
+    // Mac: ~/Library/Application Support/Hopecoin
+    // Unix: ~/.hopecoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Hopecoin-HOC";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Hopecoin";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -966,10 +966,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     fs::create_directory(pathRet);
-    return pathRet / "Hopecoin-HOC";
+    return pathRet / "Hopecoin";
 #else
     // Unix
-    return pathRet / ".hopecoin-xwc";
+    return pathRet / ".hopecoin";
 #endif
 #endif
 }

@@ -51,7 +51,7 @@ public:
         pchMessageStart[1] = 0x4d;
         pchMessageStart[2] = 0x4f;
         pchMessageStart[3] = 0xf7;
-        vAlertPubKey = ParseHex("04bf1c0874e989ca090e7eb5d5dd8a04224f2db5cc80d28a256ee676a33396f21622aacb06a9159eaf02ada44238f935f12dd35dad2f6f9075e325ee1219c88533");
+        vAlertPubKey = ParseHex("048df19e4703ea1453953eb7f205114388089666fc7096406261c449c1b5416d1e2186faeeead72ec85c0ce5138b8c817cd9bc7cff4cd45e247505a310fbddff28");
         nDefaultPort = 15722;
         nRPCPort = 15733;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 20);
@@ -75,11 +75,31 @@ public:
         genesis.nVersion = 1;
         genesis.nTime    = 1548587400;
         genesis.nBits    = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce   = 45707;
+        genesis.nNonce   = 895940;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000007d69ba0f79b4823effb06b08663e2e4c51ed03aaeb547e2e0b83fd37b73"));
-        assert(genesis.hashMerkleRoot == uint256("0x73513debc549137a47f2afb73173a2d2b4b0c13f57a57387ae3849a928e1e08d"));
+// Genesis start//
+/*
+        hashGenesisBlock = uint256("0x0");
+        if (true && genesis.GetHash() != hashGenesisBlock)
+        {
+                uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+                    LogPrintf("recalculating params for mainnet.\n");
+                    LogPrintf("old TestNet genesis nonce: %d\n", genesis.nNonce);
+                    LogPrintf("old TestNet genesis hash:  %s\n", hashGenesisBlock.ToString().c_str());
+                    // deliberately empty for loop finds nonce value.
+
+                    for(genesis.nNonce == 0; genesis.GetHash() > hashTarget; genesis.nNonce++){ }
+
+                    LogPrintf(" genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+                    LogPrintf(" genesis nonce: %d\n", genesis.nNonce);
+                    LogPrintf(" genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+        }
+*/
+// Genesis end  //
+
+        assert(hashGenesisBlock == uint256("0x00000c772518889a82ac9032de27af413f5e720faca91e3e9543629ac881a8c5"));
+        assert(genesis.hashMerkleRoot == uint256("0x672a17258a9f34644424e09103fd2eec491b94174bf92411d0f78d6da1ff4887"));
 
 //        vSeeds.push_back(CDNSSeedData("dnsseed-eu", "dnsseed.oizopower.nl"));
 //        vSeeds.push_back(CDNSSeedData("dnsseed-cn", "dnsseed-cn.hopecoin.info"));
@@ -98,7 +118,7 @@ public:
         nLastPOWBlock = 200;
         
         //Registered Message PubKey
-        mapBroadcastMessPubKey.insert(pair<std::string,vector<unsigned char> >("Ray",   ParseHex("04bf1c0874e989ca090e7eb5d5dd8a04224f2db5cc80d28a256ee676a33396f21622aacb06a9159eaf02ada44238f935f12dd35dad2f6f9075e325ee1219c88533")));
+        mapBroadcastMessPubKey.insert(pair<std::string,vector<unsigned char> >("Ray",   ParseHex("048df19e4703ea1453953eb7f205114388089666fc7096406261c449c1b5416d1e2186faeeead72ec85c0ce5138b8c817cd9bc7cff4cd45e247505a310fbddff28")));
  //       mapBroadcastMessPubKey.insert(pair<std::string,vector<unsigned char> >("Lizhi", ParseHex("04cd377cb31be7b1b4484f8b42e9ca3b748fa9fb3ab1f877ecb9907bfd8623cdaba04c15db1ac897bc384a355e3e099bd78696b3ff03e7955ab43bf3c30bb6e7ec")));
     }
 
@@ -130,7 +150,7 @@ public:
         pchMessageStart[2] = 0xdf;
         pchMessageStart[3] = 0xe7;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
-        vAlertPubKey = ParseHex("04b4f5ab1a9e79cd0e30eb6dbd1d2b53c16d3da561a11b7edee2c8ffc6ddb8f3a9894845b48c7fae8e1b84525431af64574aa182239413dd4186c625930cd56649");
+        vAlertPubKey = ParseHex("049eed0b2ac81317d8e04af43ab4dd46b848b8e236ec62a32d66c98d8d69554a9b21978b8c78635ef5c922e66b5d7f4bf67eaf858027c2084fc6357108ae756fb6");
         nDefaultPort = 15704;
         nRPCPort = 15705;
         strDataDir = "testnet";
@@ -138,10 +158,11 @@ public:
 
         // Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nBits  = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 150657;
+        genesis.nNonce = 2199;
         genesis.nTime    = 1548586787;
         hashGenesisBlock = genesis.GetHash();
 
+//genesisblock-testnet start
 /*
         hashGenesisBlock = uint256("0x01");
         if (true && genesis.GetHash() != hashGenesisBlock)
@@ -159,7 +180,9 @@ public:
                     LogPrintf("new TestNet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
         }
 */
-       assert(hashGenesisBlock == uint256("0000a17e5bfeea11754901c7acf929cf157856b386b851c5a3f7920b9e5dab49"));
+//genesisblock-testnet end
+
+       assert(hashGenesisBlock == uint256("00002bb1de674fcd8da1a6505733b76cdd6668edacbc0b71bb62a5a1c9d3439d"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
